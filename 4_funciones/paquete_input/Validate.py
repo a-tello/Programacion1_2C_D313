@@ -2,7 +2,7 @@ def validate_number(num_str: str, min_num: int|float, max_num: int|float) -> boo
     try:
         valid_number = int(num_str)
         
-        if min_num < valid_number < max_num:
+        if min_num <= valid_number <= max_num:
             return True
     except:
         pass

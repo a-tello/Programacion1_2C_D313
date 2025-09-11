@@ -1,5 +1,5 @@
 from random import randint
-from os import system
+from paquete_input.Input import get_int
 
 OPCIONES = {1: 'Piedra', 2: 'Papel', 3: 'Tijera'}
 
@@ -13,7 +13,7 @@ def verificar_ganador_ronda(jugador: int, maquina: int) -> str:
         
     Returns:
         str:    "Jugador" → Si el jugador gana la ronda
-                "Máquina" → Si la máquina gana la ronda
+                "Maquina" → Si la máquina gana la ronda
                 "Empate" → Si ambos eligen el mismo elemento
     """
     
@@ -54,10 +54,10 @@ def verificar_ganador_partida(aciertos_jugador: int, aciertos_maquina: int) -> s
         
     Returns:
         str:    "Jugador" → Si el jugador tiene más aciertos
-                "Máquina" → Si la máquina tiene más aciertos
+                "Maquina" → Si la máquina tiene más aciertos
     """
     
-    return "Jugador" if aciertos_jugador > aciertos_maquina else "Máquina"
+    return "Jugador" if aciertos_jugador > aciertos_maquina else "Maquina"
 
 def mostrar_elemento(eleccion: int) -> str:
     """
@@ -78,14 +78,14 @@ def jugar_piedra_papel_tijera() -> str:
     Gestiona toda la lógica del juego, usando las funciones anteriores
     
     Returns:
-        str:    Devuelve quien ganó la partida ("Jugador"|"Máquina")
+        str:    Devuelve quien ganó la partida ("Jugador"|"Maquina")
     """
-    rondas_jugadas = 0
+    rondas_jugadas = puntos_jugador = puntos_maquina = 0
     ganador = ''
     
     while True:
         rondas_jugadas += 1
-        eleccion_jugador = int(input('Seleccione una opción(1.Piedra 2.Papel 3.Tijera): '))
+        eleccion_jugador = get_int('1.Piedra \n2.Papel \n3.Tijera\nSeleccione una opción: ', 'Debe ingresar una opción válida', 1, 3)
         eleccion_maquina = randint(1, 3)
         
         ganador_ronda = verificar_ganador_ronda(eleccion_jugador, eleccion_maquina)
@@ -93,11 +93,13 @@ def jugar_piedra_papel_tijera() -> str:
             puntos_jugador += 1
         elif ganador_ronda == 'Maquina':
             puntos_maquina += 1
-            
-        print(f'RONDA {rondas_jugadas}')
-        print('-'*50)
-        print(f'Jugador: {mostrar_elemento(eleccion_jugador)} \tMaquina: {mostrar_elemento(eleccion_maquina)}\t Ganador: {ganador_ronda}')
-        print('-'*50)
+        
+        print()
+        print(f'RONDA {rondas_jugadas}\t\tPuntos\tJugador: {puntos_jugador}|Maquina: {puntos_maquina} ')
+        print('-'*75)
+        print(f'Jugador: {mostrar_elemento(eleccion_jugador):<15} Maquina: {mostrar_elemento(eleccion_maquina):<15}\t||Ganador: {ganador_ronda}')
+        print('-'*75)
+        print()
             
         if rondas_jugadas == 1:
             continue

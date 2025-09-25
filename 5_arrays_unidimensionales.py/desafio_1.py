@@ -23,6 +23,9 @@
 # 🔹 Consejo:
 #  ✅ Desarrollar y probar primero cada función individualmente antes de organizarlas en módulos.
 
+import os
+import Array_Generales as Arr
+
 def mostrar_menu():
     print(f"""{"-"*20}LISTAS{"-"*20}
     1. Ingresar datos
@@ -37,32 +40,53 @@ def mostrar_menu():
     
 
 cargados = False
+numeros = []
+
 while True:
     mostrar_menu()
     opcion = int(input('Seleccione una opción (1 a 8): '))
     
-    if 1 < opcion < 9 and not cargados: 
-        print('Debe cargar los datos antes de seleccionar otra opción')
+    if 1 < opcion < 8 and not cargados: 
+        os.system('cls')
+        print('Debe cargar los datos antes de seleccionar otra opción\n')
         continue
     
     match opcion:
         case 1:
+            os.system('cls')
+            numeros = Arr.crear_array(10)
             cargados = True
         case 2:
-            pass
+            os.system('cls')
+            positivos, negativos = Arr.positivos_negativos_array(numeros)
+            print(f'La cantidad de números positivos es: {positivos}\nLa cantidad de números negativos es: {negativos}')
+            input('\n\n\nPresione enter para volver al menu...')
         case 3:
-            pass
+            os.system('cls')
+            suma = Arr.suma_pares(numeros)
+            print(f'La suma de los números pares es: {suma}')
+            input('\n\n\nPresione enter para volver al menu...')
         case 4:
-            pass
+            os.system('cls')
+            impar = Arr.mayor_numero_impar(numeros)
+            print(f'El mayor número impar es: {impar}') if impar else print('No hay números impares')
+            input('\n\n\nPresione enter para volver al menu...')
         case 5:
-            pass
+            os.system('cls')
+            Arr.mostrar_array(numeros)
+            input('\n\n\nPresione enter para volver al menu...')
         case 6:
-            pass
+            os.system('cls')
+            Arr.mostrar_pares_array(numeros)
+            input('\n\n\nPresione enter para volver al menu...')
         case 7:
-            pass
+            os.system('cls')
+            Arr.mostrar_posiciones_impares_array(numeros)
+            input('\n\n\nPresione enter para volver al menu...')
+        case 8:
+            break
         case _: 
-            print('\nOpción incorrecta. Debe seleccionar una opcion entre 1 y 8')
+            os.system('cls')
+            print('\nOpción incorrecta. Debe seleccionar una opcion entre 1 y 8\n\n')
     
-    
-
     

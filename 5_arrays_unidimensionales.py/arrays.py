@@ -16,8 +16,15 @@ def crear_array(cantidad: int = 0) -> list|None:
 
 
 
-# ??????
-# Escribir una función que permita ingresar la cantidad de números que reciba como parámetro.  Crear el array con la función del punto 1.?
+
+# Escribir una función que permita ingresar la cantidad de números que reciba como parámetro.  Crear el array con la función del punto 1.
+def array_cantidad():
+    cantidad = int(input('Ingrese la cantidad de elementos que tendrá el array: '))
+    
+    return crear_array(cantidad)
+    
+# lista = array_cantidad()
+
 
 
 
